@@ -3,15 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec ts-node src/server.ts"
   },
-  "keywords": ["NodeJs"],
+  "keywords": [
+    "NodeJs"
+  ],
   "author": "Bruno Pessoa",
-  "url":{
-    "git":"https://github.com/BrunoPessoa097/api-agenda.git",
+  "url": {
+    "git": "https://github.com/BrunoPessoa097/api-agenda.git",
     "email": "brunopessoa097@gmail.com",
-    "linkedin":"https://www.linkedin.com/in/bruno-pessoa-097/"
-  }
+    "linkedin": "https://www.linkedin.com/in/bruno-pessoa-097/"
+  },
   "license": "MIT",
-  "description": "ApiResfull"
+  "description": "ApiResfull",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/nodemon": "^1.19.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
