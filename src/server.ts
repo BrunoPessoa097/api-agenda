@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import pessoaRouter from './routes/pessoaRouter';
 
 const app = express();
 
@@ -7,6 +8,8 @@ app.use(express.json());
 dotenv.config();
 
 const PORT: number = parseInt(`${process.env.PORT || 3000}`);
+
+app.use(pessoaRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
