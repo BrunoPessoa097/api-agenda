@@ -1,0 +1,17 @@
+{
+  "name": "Api Agenda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["NodeJs"],
+  "author": "Bruno Pessoa",
+  "url":{
+    "git":"https://github.com/BrunoPessoa097/api-agenda.git",
+    "email": "brunopessoa097@gmail.com",
+    "linkedin":"https://www.linkedin.com/in/bruno-pessoa-097/"
+  }
+  "license": "MIT",
+  "description": "ApiResfull"
+}
