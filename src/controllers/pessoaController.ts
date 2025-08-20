@@ -8,7 +8,13 @@ const dados: IPessoa[] = [{
   telefone: "(77)7777-7777",
   email: "joao@gmail.com",
   endereco: "Rua C",
-  dataNascimento: new Date('1998-08-06')
+  dataNascimento: new Date('1998-08-06'),
+  ativo: true,
+  senha: btoa("1244"),
+  data:{
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
 }];
 
 export const getPessoa = (req: Request, res: Response) => {
@@ -16,4 +22,19 @@ export const getPessoa = (req: Request, res: Response) => {
     message: 'Get Pessoa',
     inf: dados
   });
-}
+};
+
+export const addPessoa = (req: Request, res: Response) => {
+  /*const {
+    nome,
+    telefone,
+    email,
+    endereco,
+    dataNascimento
+  }: IPessoa = req.body*/
+
+  res.status(200).json({
+    message: 'Add Pessoa',
+    method: req.method
+  });
+};
