@@ -56,7 +56,8 @@ export const addPessoa = (req: Request, res: Response) => {
     return res.status(200).json({
       message: 'Add Pessoa',
       method: req.method,
-      dado: pessoa
+      dado: pessoa,
+      info: dados
     });
   }catch(error){
     return res.status(500).json({
@@ -64,4 +65,14 @@ export const addPessoa = (req: Request, res: Response) => {
       error: error
     });
   };
+};
+
+export const buscarPessoa = (req: Request, res: Response) => {
+  const id = parseInt(req.params.id) ;
+  const result = dados.find((p)=> p.id === id);
+  res.status(200).json({
+    message: 'searchPessoa',
+    id: id,
+    dado: result
+  })
 };

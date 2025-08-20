@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getPessoa, 
-        addPessoa
+        addPessoa,
+        buscarPessoa,
        } from '../controllers/pessoaController';
 import { pessoaValidarEntrada,
          pessoaPadronizarEntrada
@@ -11,5 +12,7 @@ const pessoaRouter: Router = Router();
 pessoaRouter.route('/pessoa')
   .get(getPessoa)
   .post(pessoaValidarEntrada, pessoaPadronizarEntrada, addPessoa);
+pessoaRouter.route('/pessoa/:id')
+  .get(buscarPessoa);
 
 export default pessoaRouter;
