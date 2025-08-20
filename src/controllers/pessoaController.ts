@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import * as fs from 'fs';
 import IPessoa from '../config/interfaces/pessoaInterface';
 
 const dados: IPessoa[] = [{
@@ -17,6 +16,8 @@ const dados: IPessoa[] = [{
   }
 }];
 
+export default dados;
+
 export const getPessoa = (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Get Pessoa',
@@ -25,16 +26,42 @@ export const getPessoa = (req: Request, res: Response) => {
 };
 
 export const addPessoa = (req: Request, res: Response) => {
-  /*const {
+  const {
     nome,
     telefone,
     email,
     endereco,
-    dataNascimento
-  }: IPessoa = req.body*/
+    dataNascimento,
+    ativo,
+    senha
+  } = req.body.padrao;
 
-  res.status(200).json({
-    message: 'Add Pessoa',
-    method: req.method
-  });
+  const pessoa: IPessoa = {
+    id: dados.length + 1,
+    nome,
+    telefone,
+    email,
+    endereco,
+    dataNascimento,
+    ativo,
+    senha,
+    data: {
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  }; 
+
+  try{
+    dados.push(pessoa);
+    return res.status(200).json({
+      message: 'Add Pessoa',
+      method: req.method,
+      dado: pessoa
+    });
+  }catch(error){
+    return res.status(500).json({
+      message: 'Erro ao adicionar pessoa',
+      error: error
+    });
+  };
 };
