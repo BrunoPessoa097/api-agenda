@@ -1,0 +1,18 @@
+[
+  {
+    id: 1,
+    nome: "Bruno",
+    telefone: "(88) 8888-8888",
+    email:"bruno@email.com",
+    endereco: "Rua A",
+    dataNascimento: "1996-12-19"
+  },
+  {
+    id: 2,
+    nome: "Ligia",
+    telefone: "(99) 9999-9999",
+    email:"ligia@email.com",
+    endereco: "Rua b",
+    dataNascimento: "1999-12-10"
+  }
+]
