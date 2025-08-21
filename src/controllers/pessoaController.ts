@@ -26,25 +26,10 @@ export const getPessoa = (req: Request, res: Response) => {
 };
 
 export const addPessoa = (req: Request, res: Response) => {
-  const {
-    nome,
-    telefone,
-    email,
-    endereco,
-    dataNascimento,
-    ativo,
-    senha
-  } = req.body.padrao;
 
   const pessoa: IPessoa = {
     id: dados.length + 1,
-    nome,
-    telefone,
-    email,
-    endereco,
-    dataNascimento,
-    ativo,
-    senha,
+    ...req.body.padrao,
     data: {
       createdAt: new Date(),
       updatedAt: new Date()
