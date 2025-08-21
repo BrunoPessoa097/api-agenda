@@ -113,6 +113,28 @@ export const updatePessoa = (req: Request, res: Response) => {
   });
 }
 
+export const deletarPessoa = (req: Request, res: Response) => {
+  const id: number = parseInt(req.params.id);
+
+  const vdd = verificarExistPessoa(id)
+
+  if(vdd) {
+    return res.status(404).json({
+      message: 'Pessoa não encontrada',
+      route: 'deletar pessoa'
+    });
+  }
+
+  const result = dados.findIndex((p)=> p.id ===id);
+
+  dados.splice(result,1);
+  
+  res.status(200).json({
+    message: 'deletarPessoa',
+    dado: dados
+  });
+};
+
 export const verificarExistPessoa = (id:number): boolean => {
   const exist = dados.findIndex((p)=> p.id === id);
 

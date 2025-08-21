@@ -2,7 +2,8 @@ import { Router, Request, Response } from 'express';
 import { getPessoa, 
         addPessoa,
         buscarPessoa,
-        updatePessoa
+        updatePessoa,
+        deletarPessoa
        } from '../controllers/pessoaController';
 import { pessoaValidarEntrada,
          pessoaPadronizarEntrada
@@ -24,6 +25,7 @@ pessoaRouter.route('/pessoa/:id')
     pessoaValidarEntrada,
     pessoaPadronizarEntrada,
     updatePessoa
-  );
+  )
+  .delete(deletarPessoa);
 
 export default pessoaRouter;
