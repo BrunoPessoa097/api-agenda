@@ -38,7 +38,7 @@ export const addPessoa = (req: Request, res: Response) => {
 
   try{
     dados.push(pessoa);
-    return res.status(200).json({
+    return res.status(201).json({
       message: 'Add Pessoa',
       method: req.method,
       dado: pessoa,
@@ -92,7 +92,7 @@ export const updatePessoa = (req: Request, res: Response) => {
     ...req.body.padrao
   };
 
-  res.status(200).json({
+  res.status(201).json({
     message: 'updatePessoa',
     dados: dados[result]
   });
@@ -114,7 +114,7 @@ export const deletarPessoa = (req: Request, res: Response) => {
 
   dados.splice(result,1);
   
-  res.status(200).json({
+  res.status(201).json({
     message: 'deletarPessoa',
     dado: dados
   });
