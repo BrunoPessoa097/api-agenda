@@ -40,9 +40,7 @@ export const addPessoa = (req: Request, res: Response) => {
     dados.push(pessoa);
     return res.status(201).json({
       message: 'Add Pessoa',
-      method: req.method,
-      dado: pessoa,
-      info: dados.length
+      dado: pessoa
     });
   }catch(error){
     return res.status(500).json({
@@ -58,9 +56,7 @@ export const buscarPessoa = (req: Request, res: Response) => {
   
   if(vdd) {
     return res.status(404).json({
-      message: 'Pessoa não encontrada',
-      route: 'buscar pessoa',
-      id: id
+      message: 'Pessoa não encontrada'
     });
   };
   
@@ -68,7 +64,6 @@ export const buscarPessoa = (req: Request, res: Response) => {
   
   res.status(200).json({
     message: 'searchPessoa',
-    id: id,
     dado: result
   });
 };
@@ -79,9 +74,7 @@ export const updatePessoa = (req: Request, res: Response) => {
 
   if(vdd) {
     return res.status(404).json({
-      message: 'Pessoa não encontrada',
-      route: 'update pessoa',
-      id,
+      message: 'Pessoa não encontrada'
     });
   };
 
@@ -94,7 +87,7 @@ export const updatePessoa = (req: Request, res: Response) => {
 
   res.status(201).json({
     message: 'updatePessoa',
-    dados: dados[result]
+    dado: dados[result]
   });
 }
 
@@ -105,8 +98,7 @@ export const deletarPessoa = (req: Request, res: Response) => {
 
   if(vdd) {
     return res.status(404).json({
-      message: 'Pessoa não encontrada',
-      route: 'deletar pessoa'
+      message: 'Pessoa não encontrada'
     });
   }
 
@@ -114,9 +106,8 @@ export const deletarPessoa = (req: Request, res: Response) => {
 
   dados.splice(result,1);
   
-  res.status(204).json({
-    message: 'deletarPessoa',
-    dado: dados
+  res.status(201).json({
+    message: 'deletarPessoa'
   });
 };
 
