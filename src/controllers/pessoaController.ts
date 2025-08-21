@@ -114,7 +114,7 @@ export const deletarPessoa = (req: Request, res: Response) => {
 
   dados.splice(result,1);
   
-  res.status(201).json({
+  res.status(204).json({
     message: 'deletarPessoa',
     dado: dados
   });
