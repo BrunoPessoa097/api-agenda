@@ -32,7 +32,7 @@ export const pessoaPadronizarEntrada = (req: Request, res: Response, next: NextF
   req.body.padrao.telefone = req.body.telefone.trim();
   req.body.padrao.email = req.body.email.trim();
   req.body.padrao.endereco = req.body.endereco.trim();
-  req.body.padrao.dataNascimemto = Date.parse(req.body.dataNascimento);
+  req.body.padrao.dataNascimento = Date.parse(req.body.dataNascimento);
   req.body.padrao.ativo = req.body.ativo;
   req.body.padrao.senha = btoa(req.body.senha.trim());
   

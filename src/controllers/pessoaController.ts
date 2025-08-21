@@ -57,7 +57,7 @@ export const addPessoa = (req: Request, res: Response) => {
       message: 'Add Pessoa',
       method: req.method,
       dado: pessoa,
-      info: dados
+      info: dados.length
     });
   }catch(error){
     return res.status(500).json({
@@ -68,11 +68,53 @@ export const addPessoa = (req: Request, res: Response) => {
 };
 
 export const buscarPessoa = (req: Request, res: Response) => {
-  const id = parseInt(req.params.id) ;
+  const id: number = parseInt(req.params.id);
+  const vdd = verificarExistPessoa(id);
+  
+  if(vdd) {
+    return res.status(404).json({
+      message: 'Pessoa não encontrada',
+      route: 'buscar pessoa',
+      id: id
+    });
+  };
+  
   const result = dados.find((p)=> p.id === id);
+  
   res.status(200).json({
     message: 'searchPessoa',
     id: id,
     dado: result
-  })
+  });
 };
+
+export const updatePessoa = (req: Request, res: Response) => {
+  const id:number = parseInt(req.params.id);
+  const vdd = verificarExistPessoa(id);
+
+  if(vdd) {
+    return res.status(404).json({
+      message: 'Pessoa não encontrada',
+      route: 'update pessoa',
+      id,
+    });
+  };
+
+  const result = dados.findIndex((p)=>p.id === id);
+
+  dados[result] = {
+    id,
+    ...req.body.padrao
+  };
+
+  res.status(200).json({
+    message: 'updatePessoa',
+    dados: dados[result]
+  });
+}
+
+export const verificarExistPessoa = (id:number): boolean => {
+  const exist = dados.findIndex((p)=> p.id === id);
+
+  return exist === -1 ? true : false;
+}
