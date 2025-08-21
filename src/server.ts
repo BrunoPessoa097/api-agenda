@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import pessoaRouter from './routes/pessoaRouter';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 dotenv.config();
 
 const PORT: number = parseInt(`${process.env.PORT || 3000}`);
