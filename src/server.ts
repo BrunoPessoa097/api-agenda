@@ -1,12 +1,17 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import helmet from 'helmet';
 import pessoaRouter from './routes/pessoaRouter';
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET','POST','PUT','DELETE']
+}));
+app.use(helmet());
 dotenv.config();
 
 const PORT: number = parseInt(`${process.env.PORT || 3000}`);
