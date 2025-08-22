@@ -9,12 +9,11 @@ import pessoaRouter from './routes/pessoaRouter';
 const app = express();
 
 app.use(express.json());
-// Politicas de segurança 
 app.use(permissionsPolicy({
   features: politics
 }));
 app.use(cors({
-  origin: ['http://localhost:3000'], // endereço do front permitido. para adicionar mais endereços, separar por vírgula e colocar entre aspas.
+  origin: ['http://localhost:3000'],
   methods: ['GET','POST','PUT','DELETE']
 }));
 app.use(helmet());

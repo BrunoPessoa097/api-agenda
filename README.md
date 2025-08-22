@@ -5,12 +5,13 @@ Api RestFull com CRUD(inserir, atualizar,listar e deletar).
 1. [Informações do projeto](#informacao-do-peojeto)
 2. [Funcionabilidades](#suncionabilidade)
 3. [Tecnologia usadas](#tecnologia-usadas)
-4. [Dependências](#dependencias)
-5. [Como iniciar o projeto](#como-iniciar-o-projeto)
-6. [Codigos de status HTTP](#codigo-de-status-http)
-7. [Formato das informações ](#formato-das-informacoes)
-8. [Endpoints](#endpoints)
-9. [Criado por](#criado-por)
+4. [Trecho do código para ter atenção](#trecho-do-cpdigo-para-ter-atencao)
+5. [Dependências](#dependencias)
+6. [Como iniciar o projeto](#como-iniciar-o-projeto)
+7. [Codigos de status HTTP](#codigo-de-status-http)
+8. [Formato das informações ](#formato-das-informacoes)
+9. [Endpoints](#endpoints)
+10. [Criado por](#criado-por)
 
 ## Informações do projeto.
 * **Versão**: 1.0.0
@@ -36,6 +37,34 @@ Exemplo:
 }
 ```
 
+## Trechos do código para ter atenção.
+Os trechos abaixo foram habilitado, usando `cors`, `helmet` e `permissionsPolicy` para melhor segurança da api, onde a mesma foi testada no site [segurity headers](https://securityheaders.com/), onde a mesma garantiu nota A em todos os requisitos(teste efetuado em: 22/08/2025) garantindo as melhores práticas no quesito segurança. Dependendo da configuração e/ou versao do `NodeJS` ou de outro gerenciador como `npm` ou `yarn`, poderá ocasionar algum erro, necessitando olhar as seguintes configurações e fazer as alterações e/ou desativando(a API continua funciona sem essas configurações ativa no código) rodando normalmente, mas sem os requisitos de segurança no qual a mesma foi submetida.
+
+* A configuração do cors.
+  * foi construida da seguinte lógica.
+  ```typescript
+    app.use(cors({
+      origin: ['http://localhost:3000'], /// Rotas que sao permitidas do front-end
+      methods: ['GET','POST','PUT','DELETE'] //Métodos permitido.
+    })
+    );
+  ```
+  * Para adicionar mais rotas segue o explo abaixo:
+  ```typescript
+    app.use(cors({
+      origin: ['http://localhost:3000','<nova-rota>']
+    }))
+  ```
+
+* A política de permissão é importada, e recebe uma variavel`politics` contendo as configurações, onde se encontra no seguinte caminho abaixo para qualquer análise `src/config/segure/politics`.
+ ```typescript
+   import permissionsPolicy from 'permissions-policy';
+
+  app.use(permissionsPolicy({
+    features: politics
+  }));
+ ```
+
 ## Tecnologia Usadas
 As seguintes tecnologias foram usadas, certifique-se que já estão instaladas para roda o projeto em questão.
 * [Node.js](https://nodejs.org/pt) - Ambiente execução Javascript.
@@ -43,6 +72,7 @@ As seguintes tecnologias foram usadas, certifique-se que já estão instaladas p
 * [Typescript](https://www.typescriptlang.org/) - Linguagem que adiciona tipagem ao Javascript.
 * [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) - Linguagem de programação.
 * [ECMAScript](https://ecma-international.org/publications-and-standards/standards/ecma-262/) - Especificação da linguagem Javascript.
+* [Helmet](https://helmetjs.github.io/) - Middleware para segurança.
 
 ## Dependências
 * `express` - (versão: ^5.1.0) - Framework web para Node js.
@@ -50,6 +80,8 @@ As seguintes tecnologias foram usadas, certifique-se que já estão instaladas p
 * `cors` - (versão: ^2.8.5) - Controlador de acesso de recursos.
 * `dotenv` - (versão: ^17.2.1) - Carregar variáveis do ambiente.
 * `ts-node` - (versão: ^10.9.2) - Interpretador typescript.
+* `helmet` - (versão: ^8.1.0) - Middleware para segurança.
+* `cors` - (versão: ^2.8.5) - Mecanismo de segurança que permite acessar requisição de uma origem diferente.
 
 ## Como iniciar o projeto
 Certifique que tenha o `npm` ou `yarn` instalado.
@@ -167,7 +199,7 @@ Abaixo segue os tipos de cada propriedade dos usuários para fins de orientar me
       {
         "id": 1,
         "nome": "Joao",
-        ... mais informações 
+        **... mais informações**
       }
     ]
   }
